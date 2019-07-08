@@ -9,17 +9,23 @@ public class PigLatinTranslator {
                     || (inputArr[0] == 'y' && inputArr[1] == 't') || (inputArr[0] == 'x' && inputArr[1] == 'r')) {
                 result += input + "ay";
 
-            } else {
-                for (int i = 1; i < inputArr.length - 1; i++) {
-                    if (inputArr[i] == 'a' || inputArr[i] == 'e' || inputArr[i] == 'i' || inputArr[i] == 'o' || inputArr[i] == 'y') {
-                        String str = splitInput[j].substring(i) + splitInput[j].substring(0, i);
 
-                        result += splitInput[j] + "ay";
+            } else {
+                for (int i = 1; i < inputArr.length; i++) {
+                    if (inputArr[i] == 'a' || inputArr[i] == 'e' || inputArr[i] == 'i' || inputArr[i] == 'o' || inputArr[i] == 'y' || (inputArr[i] == 'u' && (inputArr[i - 1] != 'q'))) {
+                        String str = splitInput[j].substring(i) + splitInput[j].substring(0, i);
+                        result += str + "ay";
+                        break;
+
                     }
 
                 }
             }
-            result+=" ";
+
+            if (j == splitInput.length - 1)
+                return result;
+            else
+                result += " ";
         }
         return result;
     }
